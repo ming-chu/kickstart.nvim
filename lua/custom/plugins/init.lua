@@ -23,4 +23,40 @@ return {
     },
     config = true,
   },
+
+  {
+    'nvim-neotest/neotest',
+    dependencies = {
+      'nvim-neotest/nvim-nio',
+      'nvim-lua/plenary.nvim',
+      'antoinemadec/FixCursorHold.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'sidlatau/neotest-dart',
+    },
+
+    config = function()
+      neotest = require 'neotest'
+      neotest.setup {
+        adapters = {
+          require 'neotest-dart' {
+            command = 'flutter', -- Command being used to run tests. Defaults to `flutter`
+            -- Change it to `fvm flutter` if using FVM
+            -- change it to `dart` for Dart only tests
+            use_lsp = true, -- When set Flutter outline information is used when constructing test name.
+            -- Useful when using custom test names with @isTest annotation
+            custom_test_method_names = {},
+          },
+        },
+        vim.keymap.set('n', '<leader>tt', function()
+          print 'Run the nearest test'
+          neotest.run.run()
+        end, { desc = 'Run the nearest test' }),
+
+        vim.keymap.set('n', '<leader>ts', function()
+          print 'Toggle Neotest summary'
+          neotest.summary.toggle()
+        end, { desc = 'Toggle Neotest summary' }),
+      }
+    end,
+  },
 }
