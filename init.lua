@@ -830,13 +830,6 @@ require('lazy').setup({
     end,
   },
 
-  {
-    'Mofiqul/dracula.nvim',
-    opts = {
-      colorscheme = 'dracula',
-    },
-  },
-
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
@@ -851,10 +844,18 @@ require('lazy').setup({
       vim.cmd.colorscheme 'tokyonight-night'
 
       -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
+      vim.cmd.hi 'Comment gui=none guifg=#808080'
       vim.cmd.hi 'Visual guibg=#999900 guifg=#000000 gui=none'
     end,
   },
+
+  -- {
+  --   priority = 1000, -- Make sure to load this before all the other start plugins.
+  --   'Mofiqul/dracula.nvim',
+  --   opts = {
+  --     colorscheme = 'dracula-soft',
+  --   },
+  -- },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
