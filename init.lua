@@ -159,6 +159,7 @@ vim.opt.scrolloff = 8
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
+vim.keymap.set('i', 'jk', '<Esc>') -- jk to escape insert mode
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
@@ -846,6 +847,12 @@ require('lazy').setup({
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none guifg=#808080'
       vim.cmd.hi 'Visual guibg=#999900 guifg=#000000 gui=none'
+
+      -- color for relative line numbers
+      vim.cmd.hi 'LineNrAbove guibg=none guifg=grey'
+      vim.cmd.hi 'LineNrBelow guibg=none guifg=grey'
+      vim.cmd.hi 'CursorLineNr guifg=orange' -- with cursorline enable this will be the color of the current line number
+      -- vim.cmd.hi 'LineNr guifg=orange'
     end,
   },
 
