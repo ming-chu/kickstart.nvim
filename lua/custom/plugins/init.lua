@@ -62,6 +62,11 @@ return {
           neotest.run.run()
         end, { desc = 'Run the nearest test' }),
 
+        vim.keymap.set('n', '<leader>to', function()
+          print 'Toggle Neotest output_panel'
+          neotest.output_panel.toggle()
+        end, { desc = 'Toggle Neotest output' }),
+
         vim.keymap.set('n', '<leader>ts', function()
           print 'Toggle Neotest summary'
           neotest.summary.toggle()
