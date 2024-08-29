@@ -864,6 +864,7 @@ require('lazy').setup({
     init = function()
       vim.cmd 'colorscheme darcula-dark'
       vim.cmd.hi 'CursorLineNr guifg=orange' -- with cursorline enable this will be the color of the current line number
+      vim.cmd.hi 'Visual guibg=#29417F' -- vim.cmd.hi 'Visual guibg=#29417F guifg=#000000 gui=none'
     end,
   },
 
