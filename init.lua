@@ -191,10 +191,15 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
 -- Open dir use :Ex
 vim.keymap.set('n', '<leader>pv', '<cmd>Ex<CR>')
+
+-- accept copilot suggestion
+vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false,
+})
+vim.g.copilot_no_tab_map = true
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -865,6 +870,7 @@ require('lazy').setup({
       vim.cmd 'colorscheme darcula-dark'
       vim.cmd.hi 'CursorLineNr guifg=orange' -- with cursorline enable this will be the color of the current line number
       vim.cmd.hi 'Visual guibg=#29417F' -- vim.cmd.hi 'Visual guibg=#29417F guifg=#000000 gui=none'
+      -- vim.cmd.hi 'Normal guibg=black'
     end,
   },
 
