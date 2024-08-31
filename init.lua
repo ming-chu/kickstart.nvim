@@ -235,19 +235,6 @@ vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
   end,
 })
 
--- vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
---   group = vim.api.nvim_create_augroup('test-on-write-kenneth', { clear = true }),
---   pattern = '*.dart',
---   callback = function()
---     local currentFileName = vim.fn.expand '%:t'
---     -- write current date to
---     local file = io.open('/tmp/kenneth.log', 'a')
---     local dateStr = os.date()
---     file:write(dateStr .. '-BufWritePost: ' .. currentFileName .. '\n')
---     file:close()
---   end,
--- })
-
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
