@@ -215,6 +215,26 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- flutter reload onwrite dart files
+-- cmd: kill -USR1 $(ps | grep -E '/bin/dart\ .*\ run' | awk '{print $1}')
+vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+  group = vim.api.nvim_create_augroup('flutter-reload-on-dart-files-write', { clear = true }),
+  pattern = '*.dart',
+  callback = function()
+    local flutter_pid = vim.fn.system 'ps | grep -E "/bin/dart\\ .* run" | awk \'{print $1}\''
+    -- if flutter_pid is empty, then flutter is not running
+    if flutter_pid == '' then
+      return
+    end
+
+    vim.fn.jobstart('kill -USR1 ' .. flutter_pid, {
+      on_exit = function(_, _, _)
+        print 'flutter hot reloaded 🔥🔥'
+      end,
+    })
+  end,
+})
+
 -- vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
 --   group = vim.api.nvim_create_augroup('test-on-write-kenneth', { clear = true }),
 --   pattern = '*.dart',
